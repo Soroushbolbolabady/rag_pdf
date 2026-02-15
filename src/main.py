@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 
+from src.db.create_db import create_db_and_tables
+
 
 app = FastAPI()
 
-
-
-@app.get("/")
-async def root():
-    return {"Message" : "First message is complete"}
+@app.on_event("startup")
+def on_startup():
+    create_db_and_tables()
