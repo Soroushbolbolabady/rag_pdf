@@ -19,19 +19,19 @@ def text_refactor(txt: str) -> str:
     return cleaned_text
 
 
+
 for i in range(len(reader.pages)):
     
 
-    pages_dict = {}
+    page_dict = {}
     page = reader.pages[i]
-    pages_dict["Page_number"] = i
+    page_dict["page_number"] = page.page_number
     text = page.extract_text()
     text = text_refactor(text)
+    page_dict["page_text"] = text
     sentences = sent_tokenize(text)
-    pages_dict["text_tokenized"] = sentences
-    pages_list.append(pages_dict)
-
-
-print(pages_list)
-
+    page_dict["page_text_tokenized"] = sentences
+    page_dict["token_count"] = len(text) / 4
+    pages_list.append(page_dict)
+    
 
